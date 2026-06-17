@@ -4,10 +4,11 @@ import { useState } from 'react'
 import {
   CONTACT,
   emailHref,
+  googleMapsPlaceHref,
   hasEmail,
-  mapsHref,
   OPENING_HOURS,
   phoneHref,
+  whatsappContactHref,
   whatsappDisplay,
   whatsappHref,
 } from '@/lib/contact'
@@ -201,10 +202,10 @@ export default function ContactoPage() {
                   <div>
                     <p className="text-xs text-stone-400 tracking-wide mb-1">Dirección</p>
                     <a
-                      href={mapsHref}
+                      href={googleMapsPlaceHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-stone-700 text-sm whitespace-pre-line hover:text-stone-900 transition-colors"
+                      className="text-stone-700 text-sm whitespace-pre-line hover:text-brand-blue transition-colors underline-offset-2 hover:underline"
                     >
                       {CONTACT.address.line1}
                       <br />
@@ -216,9 +217,20 @@ export default function ContactoPage() {
                 <div className="flex gap-4">
                   <span className="shrink-0 text-stone-500"><PhoneIcon /></span>
                   <div>
-                    <p className="text-xs text-stone-400 tracking-wide mb-1">Teléfono</p>
-                    <a href={phoneHref} className="text-stone-700 text-sm hover:text-stone-900 transition-colors">
+                    <p className="text-xs text-stone-400 tracking-wide mb-1">Teléfono / WhatsApp</p>
+                    <a
+                      href={whatsappContactHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-stone-700 text-sm hover:text-brand-blue transition-colors underline-offset-2 hover:underline"
+                    >
                       {CONTACT.phone.display}
+                    </a>
+                    <a
+                      href={phoneHref}
+                      className="mt-1 block text-xs text-stone-500 hover:text-stone-700 transition-colors"
+                    >
+                      Llamar por teléfono
                     </a>
                   </div>
                 </div>
@@ -247,7 +259,7 @@ export default function ContactoPage() {
                       href={whatsappHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-stone-700 text-sm hover:text-stone-900 transition-colors"
+                      className="text-stone-700 text-sm hover:text-brand-blue transition-colors underline-offset-2 hover:underline"
                     >
                       {whatsappDisplay}
                     </a>
@@ -276,8 +288,9 @@ export default function ContactoPage() {
               <p className="text-xs text-stone-400 tracking-widest uppercase mb-4">Otros canales</p>
               <div className="flex gap-4">
                 {[
-                  { name: 'WhatsApp', href: whatsappHref },
-                  { name: 'Google Maps', href: mapsHref },
+                  { name: 'WhatsApp', href: whatsappContactHref },
+                  { name: 'Google Maps', href: googleMapsPlaceHref },
+                  { name: 'Llamar', href: phoneHref },
                   ...(hasEmail ? [{ name: 'Email', href: emailHref }] : []),
                 ].map((social) => (
                   <a

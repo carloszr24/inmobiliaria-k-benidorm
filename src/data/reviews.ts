@@ -4,80 +4,96 @@ export type Review = {
   text: string
 }
 
+/** Reseñas reales de Google Maps — Inmobiliaria K Benidorm */
 export const REVIEWS: Review[] = [
   {
     id: 1,
-    name: 'José Luis',
-    text: 'A veces la experiencia de la compraventa de un inmueble genera muchas dudas, estrés y desconfianza. Confiar la gestión a Inmobiliaria K Benidorm nos permitió disfrutar de un ambiente seguro, claro y transparente en todo momento. La atención personal nos brindó mucha tranquilidad. La gestión de la operación fue impecable, todo bien controlado y organizado. Son unos grandes profesionales; no dudaría en contactar de nuevo si necesitara su ayuda.',
+    name: 'Joaqui Quiles',
+    text: 'Profesionalidad absoluta, amabilidad desde la primera atención. Recomendados al 100%.',
   },
   {
     id: 2,
-    name: 'Jorge Fernández Calatrava',
-    text: 'Recomiendo totalmente los servicios de Inmobiliaria K Benidorm. Nos han dado un gran trato, con gran profesionalidad y con absoluta predisposición a todo lo que hemos necesitado para la compra de nuestra primera vivienda. Nos ayudaron desde el primer momento en una operación en fechas difíciles, con plazos ajustados que no dependían de nosotros, y se aseguraron de que no hubiera ningún problema. Además, han sido totalmente transparentes en todo momento, con condiciones mucho más asequibles y con una atención totalmente personalizada.',
+    name: 'Andres Candanoza',
+    text: 'Trato excelente, personas profesionales.',
   },
   {
     id: 3,
-    name: 'Ivan Linares',
-    text: 'Inmobiliaria K Benidorm hizo que la compra de nuestra parcela fuera fácil y transparente. La gestión fue impecable: rápido, proactivo y muy eficaz en toda la negociación y papeleo con el vendedor y notaría. Estamos totalmente satisfechos con su servicio y los recomendamos al 100% para la compraventa de terrenos e inmuebles. ¡Un servicio de 5 estrellas!',
+    name: 'Georgia Ellison',
+    text: 'Vendieron mi piso en menos de una semana y fueron súper atentos y profesionales en todo momento. Ha sido un placer trabajar con ustedes.',
   },
   {
     id: 4,
-    name: 'Diego',
-    text: 'Muy buena experiencia con Inmobiliaria K Benidorm. Nos han acompañado durante todo el proceso de compra con total transparencia, cercanía y un trato excelente. Siempre han estado disponibles para resolver dudas y atender cualquier petición. Su amabilidad y profesionalidad han hecho que todo sea mucho más fácil. ¡Muy recomendable!',
+    name: 'Yudelkis Genaro',
+    text: 'La recomiendo al 100%. Profesionales, educados, me guiaron y me orientaron todo el tiempo. Estamos muy satisfechos con el resultado.',
   },
   {
     id: 5,
-    name: 'Elena',
-    text: 'Hemos tenido la suerte de contar con Inmobiliaria K Benidorm en el proceso de compra de nuestra primera casa, y la experiencia ha sido estupenda. Son muy profesionales, nos han aclarado todas las dudas, se han implicado en todo el proceso y, además de ser muy cercanos y contestar rápido, se han adaptado totalmente a nuestros horarios. Recomiendo al 100% sus servicios si quieres que la experiencia sea fácil y positiva.',
+    name: 'Marisa García',
+    text: 'Estoy encantada con ellos por el trato espectacular y por la gran experiencia que tienen para hacer su trabajo.',
   },
   {
     id: 6,
-    name: 'José A. Tranche',
-    text: 'Grandísimo profesional. Mil gracias por tu ayuda, paciencia y por conseguir el objetivo. Súper recomendable.',
+    name: 'claubia martinez',
+    text: 'Excelente efectividad, rapidez y desempeño, todo lo que uno busca.',
   },
   {
     id: 7,
-    name: 'Mara Viñuales',
-    text: 'Gran experiencia: adquirir una vivienda no es sencillo, pero Inmobiliaria K Benidorm facilita mucho todo. Hemos estado acompañados durante todo el proceso; además el trato ha sido inmejorable y todo muy transparente. 100% recomendable.',
+    name: 'Lucas',
+    text: 'Empresa seria y responsable. Buena atención. Los recomiendo totalmente.',
   },
   {
     id: 8,
-    name: 'APJ',
-    text: 'Recientemente, mi abuela adquirió una vivienda a través de Inmobiliaria K Benidorm. La experiencia fue excepcional, en gran parte gracias a la dedicación y profesionalismo del equipo, que desde el primer momento nos ayudó y acompañó con paciencia en todo el proceso de visitas y elección, y hizo que la compra se realizara sin contratiempos y de manera sencilla.',
+    name: 'Pedro J. Gomez Perez',
+    text: 'Una muy buena inmobiliaria con atención personalizada y se preocupan por sus clientes. Buenos profesionales.',
   },
   {
     id: 9,
-    name: 'Mimi del Marra',
-    text: 'Muy buena experiencia y guía durante todo el proceso de venta y compra respectivamente. Escogimos Inmobiliaria K Benidorm para ambos procesos y repetiríamos sin dudarlo.',
+    name: 'Ana Teresa Camuñas',
+    text: 'Muy contentos con su trato. Volveremos sin dudar con ellos.',
   },
   {
     id: 10,
-    name: 'María José Tera Menéndez',
-    text: 'Recientemente he comprado un piso; el trato ha sido inmejorable. Desde el primer día el equipo ha estado pendiente de todo, acompañándome en este difícil y complicado proceso. Un gran profesional, muy transparente y sincero. Lo recomiendo al 100%.',
+    name: 'Sergio Muiños',
+    text: 'Excelente servicio antes, durante y después de la compra. Profesionalidad y buen trato. Agencia muy recomendable.',
   },
   {
     id: 11,
-    name: 'Inma Pintor',
-    text: 'Gracias a la capacidad mediadora de Inmobiliaria K Benidorm pudimos llevar a cabo una venta complicada. Además encontraron pronto un comprador y lo hicieron todo fácil y rápido. Muy profesionales en todo el proceso, facilitando la comunicación e involucrándose para que todo fuera bien.',
+    name: 'Ventura Fernández',
+    text: 'Un diez: gente muy competente, buscan lo que necesitas a tu medida, amables y muy profesionales.',
   },
   {
     id: 12,
-    name: 'Barrabal Enred',
-    text: 'Inmobiliaria K Benidorm nos brindó una guía excepcional durante la compra de nuestra primera vivienda. Su conocimiento del mercado y su enfoque personalizado hicieron que el proceso fuera mucho más fácil de lo que esperábamos. Apreciamos su paciencia y claridad al explicar cada paso. ¡Sin duda los recomendamos!',
+    name: 'Rafa Lopez',
+    text: 'Mejor trato imposible. La atención que recibí fue cercana, rápida y muy profesional. 100% recomendable.',
   },
   {
     id: 13,
-    name: 'Edwin',
-    text: 'Muy buena experiencia con Inmobiliaria K Benidorm: he vendido mi piso con total transparencia y atentos en todo momento. Te guían para realizar los trámites pertinentes, te acompañan en cada paso, muy buen trato y excelente trabajo. Los recomiendo al 100%.',
+    name: 'Dani Muñoz',
+    text: 'Son un equipo de profesionales increíble. Me ayudaron en la venta de mi casa en 15 días y en la compra de otra. Muy satisfechos.',
   },
   {
     id: 14,
-    name: 'Estíbaliz Pascua',
-    text: 'Profesionalidad y trato cercano. Destacaría especialmente la implicación de Inmobiliaria K Benidorm en el proceso de compraventa, estando pendientes de todos los trámites necesarios para que todo saliera correctamente. Al contrario que otras inmobiliarias, no cobran honorarios abusivos al comprador.',
+    name: 'manolo muñoz',
+    text: 'Excelente gestión: me vendió el piso en menos de dos semanas. Solo tuve que ir a firmar; se ocuparon de toda la documentación.',
   },
   {
     id: 15,
-    name: 'Rayco Araña',
-    text: 'Recomendada sin duda. Inmobiliaria K Benidorm, ante cualquier problema, no duda en hacer lo mejor para el cliente.',
+    name: 'Esmeralda Iniesta',
+    text: 'Sagrario me ayudó mucho en la compra de mi vivienda, y su compañero Javi también. Si tuviese que comprar otra vivienda no lo dudaría. Muy recomendable.',
+  },
+  {
+    id: 16,
+    name: 'JF Ponchi',
+    text: 'Me interesé por uno de sus apartamentos y me lo hicieron muy fácil. Se encargaron de todo el papeleo. Profesionales y súper amables.',
+  },
+  {
+    id: 17,
+    name: 'Tomas Mero',
+    text: 'Trato inmejorable y profesional. Me ayudaron en todo desde el primer minuto; gente muy cercana y apta a las necesidades de cada uno.',
+  },
+  {
+    id: 18,
+    name: 'Regina Villaroel',
+    text: 'Agradecida por el trato y la rapidez con la que habéis vendido el piso que tenía en Benidorm. Muy eficaces.',
   },
 ]

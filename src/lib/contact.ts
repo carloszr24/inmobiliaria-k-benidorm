@@ -11,7 +11,7 @@ export const CONTACT = {
     line1: 'Av. Rei Jaume I, 28',
     line2: '03501 Benidorm, Alicante',
     full: 'Av. Rei Jaume I, 28, 03501 Benidorm, Alicante',
-    mapsQuery: 'Av.+Rei+Jaume+I,+28,+03501+Benidorm,+Alicante',
+    mapsQuery: 'Inmobiliaria+K+Benidorm,+Av.+Rei+Jaume+I,+28,+03501+Benidorm',
   },
   phone: {
     display: '687 49 96 25',
@@ -19,6 +19,11 @@ export const CONTACT = {
     wa: '34687499625',
   },
   email: '',
+} as const
+
+export const GOOGLE = {
+  rating: 4.9,
+  reviewCount: 197,
 } as const
 
 export const OPENING_HOURS = [
@@ -31,11 +36,15 @@ export const OPENING_HOURS = [
   { day: 'Domingo', hours: 'Cerrado' },
 ] as const
 
-export const mapsHref = `https://maps.google.com/?q=${CONTACT.address.mapsQuery}`
+export const mapsHref = `https://www.google.com/maps/search/?api=1&query=${CONTACT.address.mapsQuery}`
+export const googleMapsPlaceHref = mapsHref
 export const phoneHref = `tel:${CONTACT.phone.e164}`
 export const whatsappHref = `https://wa.me/${CONTACT.phone.wa}`
+export const whatsappContactHref = `${whatsappHref}?text=${encodeURIComponent('Hola, me gustaría recibir información sobre Inmobiliaria K Benidorm.')}`
 export const hasEmail = CONTACT.email.trim().length > 0
 export const emailHref = hasEmail ? `mailto:${CONTACT.email}` : ''
 export const whatsappDisplay = `+34 ${CONTACT.phone.display}`
 
 export const scheduleSummary = 'Lun–Vie: 10:00–14:00 · 17:00–20:00 · Sáb y Dom: Cerrado'
+export const googleRatingLabel = `${GOOGLE.rating.toString().replace('.', ',')} / 5`
+export const googleReviewsSummary = `estrellas en Google (${GOOGLE.reviewCount} reseñas)`

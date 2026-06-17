@@ -4,10 +4,10 @@ import {
   AGENT,
   CONTACT,
   emailHref,
+  googleMapsPlaceHref,
   hasEmail,
-  mapsHref,
-  phoneHref,
   scheduleSummary,
+  whatsappContactHref,
   whatsappHref,
 } from '@/lib/contact'
 
@@ -34,7 +34,9 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/propiedades" className="transition-colors hover:text-white">Propiedades</Link></li>
               <li><Link href="/sobre-nosotros" className="transition-colors hover:text-white">Servicios</Link></li>
-              <li><Link href="/contacto" className="transition-colors hover:text-white">Contacto</Link></li>
+              <li>
+                <Link href="/contacto" className="transition-colors hover:text-white">Contacto</Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -42,16 +44,23 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href={mapsHref}
+                  href={googleMapsPlaceHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-white underline-offset-2 hover:underline"
                 >
                   {CONTACT.address.full}
                 </a>
               </li>
               <li>
-                <a href={phoneHref} className="transition-colors hover:text-white">{CONTACT.phone.display}</a>
+                <a
+                  href={whatsappContactHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white underline-offset-2 hover:underline"
+                >
+                  {CONTACT.phone.display}
+                </a>
               </li>
               {hasEmail && (
                 <li>

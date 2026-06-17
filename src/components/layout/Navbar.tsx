@@ -85,15 +85,15 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="relative flex items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex shrink-0 items-center">
             <Image
               src={AGENT.logo}
               alt={`${AGENT.name} logo`}
-              width={220}
-              height={58}
+              width={240}
+              height={64}
               priority
               className={cn(
-                'h-12 w-auto md:h-14 transition-opacity duration-200',
+                'h-[3.35rem] w-auto md:h-[4.35rem] translate-y-[3px] transition-opacity duration-200',
                 transparent ? 'opacity-95' : 'opacity-100'
               )}
             />

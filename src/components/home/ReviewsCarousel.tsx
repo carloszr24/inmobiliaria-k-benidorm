@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { REVIEWS } from '@/data/reviews'
+import { googleRatingLabel, googleReviewsSummary } from '@/lib/contact'
 
 function StarRow() {
   return (
@@ -141,7 +142,7 @@ export function ReviewsCarousel() {
             {[
               { value: '+100', label: 'propiedades vendidas' },
               { value: '< 60 días', label: 'tiempo medio de cierre' },
-              { value: '4,9 / 5', label: 'estrellas en Google (43 reseñas)' },
+              { value: googleRatingLabel, label: googleReviewsSummary },
             ].map((stat, idx) => (
               <div
                 key={stat.label}
