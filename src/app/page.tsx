@@ -1,46 +1,47 @@
 import Link from 'next/link'
-import { createPublicSupabase } from '@/lib/supabase/public-server'
-import { isFeaturedFlag, MAX_FEATURED_ON_HOME, rowsToProperties, type PropertyRow } from '@/lib/property-db'
+import { AGENT } from '@/lib/contact'
+import { getFeaturedPropertiesForHome } from '@/lib/properties-store'
 import { ReviewsCarousel } from '@/components/home/ReviewsCarousel'
 import { FeaturedPropertiesGrid } from '@/components/home/FeaturedPropertiesGrid'
 import { HeroCarousel } from '@/components/home/HeroCarousel'
 import { ValoracionGratuitaModal } from '@/components/home/ValoracionGratuitaModal'
-import { formatPrice } from '@/lib/utils'
 
-export const dynamic = 'force-dynamic'
+function HomeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6" aria-hidden="true">
+      <path d="M3 11.25 12 4l9 7.25" />
+      <path d="M5.25 10.5V20h13.5v-9.5" />
+      <path d="M9.75 20v-5.5h4.5V20" />
+    </svg>
+  )
+}
 
-async function getFeaturedProperties() {
-  const supabase = createPublicSupabase()
-  const { data, error } = await supabase
-    .from('properties')
-    .select('*')
-    .order('created_at', { ascending: false })
-    .limit(80)
-  if (error) throw error
+function FileIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6" aria-hidden="true">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5" />
+      <path d="M9 13h6M9 17h6" />
+    </svg>
+  )
+}
 
-  const rows = (data as PropertyRow[] | null) ?? []
-  const featuredRows = rows.filter((r) => isFeaturedFlag(r.featured))
-  const picked = featuredRows.slice(0, MAX_FEATURED_ON_HOME)
-  if (picked.length >= MAX_FEATURED_ON_HOME) {
-    return rowsToProperties(picked)
-  }
-  const pickedIds = new Set(picked.map((r) => r.id))
-  const fill: PropertyRow[] = [...picked]
-  for (const r of rows) {
-    if (fill.length >= MAX_FEATURED_ON_HOME) break
-    if (pickedIds.has(r.id)) continue
-    if (!isFeaturedFlag(r.featured)) fill.push(r)
-  }
-  return rowsToProperties(fill)
+function HandshakeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6" aria-hidden="true">
+      <path d="M9.5 10.5 12 13l2.5-2.5a2 2 0 0 1 2.8 0l3.2 3.2a2 2 0 0 1 0 2.8l-1.4 1.4a2 2 0 0 1-2.8 0L12 13.7" />
+      <path d="M14.5 10.5 12 8 9.5 10.5a2 2 0 0 1-2.8 0L3.5 7.3a2 2 0 0 1 0-2.8l1.4-1.4a2 2 0 0 1 2.8 0L12 7.3" />
+    </svg>
+  )
 }
 
 export default async function HomePage() {
-  const featured = await getFeaturedProperties()
+  const featured = getFeaturedPropertiesForHome()
 
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-svh pt-24 pb-14 md:pt-28 md:pb-20 flex items-center justify-center overflow-hidden">
+      <section className="relative h-svh min-h-[32rem] flex items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-10">
         {/* Background */}
         <div className="absolute inset-0">
           <HeroCarousel />
@@ -48,33 +49,32 @@ export default async function HomePage() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 text-center px-4 min-[400px]:px-6 max-w-5xl mx-auto">
-          <h1 className="font-display text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.45)] text-balance max-md:tracking-[-0.02em] text-[calc(clamp(2.25rem,7.5vw+0.35rem,3.45rem)+4pt)] md:text-[calc(clamp(2.65rem,5.2vw+1.1rem,5.8rem)+4pt)] leading-[1.11] md:leading-[1.05] mb-6 md:mb-8 animate-fade-up">
-            Compra o vende tu vivienda en Almería
+        <div className="relative z-10 -mt-4 md:-mt-6 text-center px-4 min-[400px]:px-6 max-w-5xl mx-auto">
+          <h1 className="font-display text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.45)] text-balance max-md:tracking-[-0.02em] text-[calc(clamp(2rem,6.5vw+0.25rem,3.2rem)+2pt)] md:text-[calc(clamp(2.5rem,4.8vw+0.9rem,5.2rem)+2pt)] leading-[1.12] md:leading-[1.06] mb-4 md:mb-5 animate-fade-up">
+            Compra o vende tu vivienda en Benidorm
             <span className="hidden md:inline"> </span>
             <br className="md:hidden" aria-hidden="true" />
-            en <span className="text-rose-100 [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">menos de 60 días</span>
+            en <span className="text-blue-100 [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">menos de 60 días</span>
           </h1>
-          <p className="text-stone-200 text-[calc(1rem+4pt)] sm:text-[calc(1.125rem+4pt)] md:text-[calc(1.25rem+4pt)] font-normal max-w-[min(100%,22rem)] sm:max-w-2xl mx-auto mb-8 sm:mb-9 md:mb-10 leading-relaxed text-pretty animate-fade-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
-            Te acompaño desde el inicio hasta el final de la operación con un servicio totalmente personalizado
+          <p className="text-stone-200 text-base sm:text-lg md:text-xl font-normal max-w-[min(100%,22rem)] sm:max-w-2xl mx-auto mb-6 md:mb-7 leading-relaxed text-pretty animate-fade-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
+            Te acompañamos desde el inicio hasta el final de la operación con un servicio totalmente personalizado
           </p>
           <div
-            className="flex w-full max-w-xl mx-auto flex-col sm:flex-row gap-4 animate-fade-up"
+            className="flex w-full max-w-xl mx-auto flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-up"
             style={{ animationDelay: '0.2s', opacity: 0, animationFillMode: 'forwards' }}
           >
             <Link
               href="/propiedades"
-              className="btn-gold w-full sm:flex-1 sm:min-w-0 min-h-[3.25rem] px-8 py-4 text-[calc(0.875rem+4pt)] tracking-wide text-center border-2 border-transparent box-border"
+              className="btn-gold w-full sm:flex-1 sm:min-w-0 min-h-[3rem] md:min-h-[3.25rem] px-8 py-3.5 md:py-4 text-sm md:text-base tracking-wide text-center border-2 border-transparent box-border"
             >
               Quiero comprar
             </Link>
             <ValoracionGratuitaModal
               triggerLabel="Quiero vender"
-              triggerClassName="inline-flex w-full sm:flex-1 sm:min-w-0 min-h-[3.25rem] items-center justify-center px-8 py-4 text-[calc(0.875rem+4pt)] tracking-wide font-medium border-2 border-gold text-gold box-border hover:bg-gold hover:text-white transition-colors duration-200"
+              triggerClassName="inline-flex w-full sm:flex-1 sm:min-w-0 min-h-[3rem] md:min-h-[3.25rem] items-center justify-center px-8 py-3.5 md:py-4 text-sm md:text-base tracking-wide font-medium border-2 border-white text-white box-border hover:bg-white hover:text-stone-900 transition-colors duration-200"
             />
           </div>
         </div>
-
       </section>
 
       <ReviewsCarousel />
@@ -108,30 +108,38 @@ export default async function HomePage() {
       </section>
 
       {/* SERVICES STRIP */}
-      <section className="bg-stone-50 py-20 px-6 md:px-10">
+      <section className="bg-stone-900 py-24 px-6 md:px-10">
         <div className="max-w-7xl mx-auto">
+          <div className="mb-10 text-center">
+            <p className="text-xs uppercase tracking-[0.13em] text-stone-400">Servicio completo</p>
+            <h2 className="mt-3 font-display text-3xl text-white md:text-4xl">
+              Todo lo que necesitas para vender con confianza
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: '🏡',
+                icon: HomeIcon,
                 title: 'Compra y venta',
                 desc: 'Acompañamiento completo durante toda la operación, de principio a fin.',
               },
               {
-                icon: '📋',
+                icon: FileIcon,
                 title: 'Valoración profesional',
-                desc: 'Conoce el precio real de mercado de tu inmueble en Almería.',
+                desc: 'Conoce el precio real de mercado de tu inmueble en Benidorm y la Costa Blanca.',
               },
               {
-                icon: '🤝',
+                icon: HandshakeIcon,
                 title: 'Asesoramiento integral',
                 desc: 'Negociación, documentación y acompañamiento para una decisión segura.',
               },
             ].map((item) => (
-              <div key={item.title} className="p-8 bg-white border border-stone-100 hover:border-gold transition-colors duration-300">
-                <span className="text-3xl mb-4 block">{item.icon}</span>
-                <h3 className="font-medium text-stone-900 mb-2">{item.title}</h3>
-                <p className="text-stone-500 text-sm leading-relaxed">{item.desc}</p>
+              <div key={item.title} className="rounded-xl p-8 border border-stone-700 bg-stone-950/40 hover:border-brand-blue transition-colors duration-300">
+                <span className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg border border-stone-700 text-stone-100">
+                  <item.icon />
+                </span>
+                <h3 className="mb-2 font-medium text-white">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-stone-300">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -139,15 +147,31 @@ export default async function HomePage() {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-24 px-6 md:px-10 text-center">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="section-title mb-6">¿Listo para encontrar<br />tu próximo hogar?</h2>
-          <p className="section-subtitle mb-10">
-            Cuéntame qué necesitas y prepararemos la mejor estrategia para ti.
+      <section className="bg-gradient-to-r from-brand-blue-dark via-brand-blue to-brand-blue-light py-24 px-6 md:px-10 text-center">
+        <div className="max-w-2xl mx-auto rounded-2xl border border-white/25 bg-black/10 px-6 py-10 md:px-10 md:py-12">
+          <p className="mb-4 text-xs uppercase tracking-[0.13em] text-blue-100">
+            {AGENT.name} · Tu inmobiliaria de confianza en Benidorm
           </p>
-          <Link href="/contacto" className="btn-primary px-12 py-4 text-sm tracking-wide">
-            Hablar con Ino
-          </Link>
+          <h2 className="mb-6 font-display text-4xl font-semibold leading-tight text-white md:text-5xl">
+            ¿Listo para encontrar<br />tu próximo hogar?
+          </h2>
+          <p className="mb-10 text-lg font-light leading-relaxed text-blue-50">
+            Cuéntanos qué necesitas y prepararemos la mejor estrategia para ti.
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/contacto"
+              className="inline-flex min-h-[3rem] items-center justify-center rounded-md border border-transparent bg-white px-10 py-3 text-sm font-medium tracking-wide text-brand-blue hover:bg-blue-50 transition-colors duration-200"
+            >
+              Hablar con nosotros
+            </Link>
+            <Link
+              href="/propiedades"
+              className="inline-flex min-h-[3rem] items-center justify-center rounded-md border border-white px-10 py-3 text-sm font-medium tracking-wide text-white hover:bg-white hover:text-brand-blue transition-colors duration-200"
+            >
+              Ver propiedades
+            </Link>
+          </div>
         </div>
       </section>
     </>

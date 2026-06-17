@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Property } from '@/types'
-import { formatPrice, OPERATION_LABELS, parseImages, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
+import { formatPrice, OPERATION_LABELS, parseImages, resolveImageUrl, STATUS_LABELS, TYPE_LABELS } from '@/lib/utils'
 import { cn } from '@/lib/utils'
 
 interface PropertyCardProps {
@@ -17,7 +17,7 @@ const statusColors: Record<string, string> = {
 
 export function PropertyCard({ property, variant = 'default' }: PropertyCardProps) {
   const images = parseImages(property.images)
-  const firstImage = images[0] || 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800'
+  const firstImage = resolveImageUrl(images[0] || '')
   const isFeaturedMinimal = variant === 'featuredMinimal'
 
   return (
@@ -54,6 +54,14 @@ export function PropertyCard({ property, variant = 'default' }: PropertyCardProp
             </>
           )}
         </div>
+
+        {!isFeaturedMinimal && (
+          <div className="md:hidden border-b border-stone-100 px-4 py-3">
+            <span className="font-display text-2xl font-medium text-stone-900">
+              {formatPrice(property.price, property.operation)}
+            </span>
+          </div>
+        )}
 
         {/* Content */}
         <div className={cn('p-6', isFeaturedMinimal && 'p-4')}>
@@ -92,8 +100,13 @@ export function PropertyCard({ property, variant = 'default' }: PropertyCardProp
           )}
 
           {/* Price */}
-          <div className={cn('flex items-center justify-between', isFeaturedMinimal && 'pt-0')}>
-            <span className={cn('font-display font-medium text-stone-900', isFeaturedMinimal ? 'text-2xl' : 'text-2xl')}>
+          <div
+            className={cn(
+              'flex items-center justify-between',
+              isFeaturedMinimal ? 'pt-0' : 'hidden md:flex'
+            )}
+          >
+            <span className="font-display text-2xl font-medium text-stone-900">
               {formatPrice(property.price, property.operation)}
             </span>
             {!isFeaturedMinimal && (

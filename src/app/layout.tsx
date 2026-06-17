@@ -1,17 +1,19 @@
 import type { Metadata } from 'next'
-import { DM_Sans, Manrope, Montserrat } from 'next/font/google'
+import { DM_Sans, Montserrat } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 
-const sans = Manrope({
+const sans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-body',
+  weight: ['400', '500', '700'],
 })
 
 const display = DM_Sans({
   subsets: ['latin'],
   variable: '--font-display',
+  weight: ['500', '600', '700'],
 })
 
 const logo = Montserrat({
@@ -21,9 +23,9 @@ const logo = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'Ino Estrella | Agente inmobiliario RE/MAX en Almería',
-  description: 'Servicio inmobiliario personalizado en Almería y Roquetas de Mar para compra, venta e inversión.',
-  keywords: 'ino estrella, agente inmobiliario, remax, almería, roquetas de mar, pisos, casas, venta, compra',
+  title: 'Inmobiliaria K Benidorm | Agencia inmobiliaria en Benidorm',
+  description: 'Compra, venta y alquiler de propiedades en Benidorm y la Costa Blanca con asesoramiento cercano y profesional.',
+  keywords: 'inmobiliaria k benidorm, inmobiliaria benidorm, agencia inmobiliaria alicante, compra vivienda benidorm, venta vivienda, alquiler costa blanca',
 }
 
 export default function RootLayout({

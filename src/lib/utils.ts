@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number, operation?: string): string {
+  if (!price || price <= 0) return 'Consultar precio'
   const base = new Intl.NumberFormat('es-ES', {
     style: 'currency',
     currency: 'EUR',
@@ -16,10 +17,23 @@ export function formatPrice(price: number, operation?: string): string {
 
 export function parseImages(images: string): string[] {
   try {
-    return JSON.parse(images)
+    const parsed = JSON.parse(images)
+    const list = Array.isArray(parsed) ? parsed.map(String).filter(Boolean) : []
+    return list.length ? list.map(resolveImageUrl) : [PROPERTY_IMAGE_FALLBACK]
   } catch {
-    return []
+    return [PROPERTY_IMAGE_FALLBACK]
   }
+}
+
+const PROPERTY_IMAGE_FALLBACK =
+  'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80'
+
+/** Evita rutas locales inexistentes que rompen next/image en producción. */
+export function resolveImageUrl(url: string): string {
+  const trimmed = url?.trim()
+  if (!trimmed) return PROPERTY_IMAGE_FALLBACK
+  if (/^https?:\/\//i.test(trimmed)) return trimmed
+  return PROPERTY_IMAGE_FALLBACK
 }
 
 export const PROPERTY_TYPES = ['piso', 'casa', 'local', 'terreno', 'oficina'] as const

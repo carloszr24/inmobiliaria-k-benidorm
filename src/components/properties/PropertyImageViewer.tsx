@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { resolveImageUrl } from '@/lib/utils'
 
 interface PropertyImageViewerProps {
   images: string[]
@@ -9,7 +10,9 @@ interface PropertyImageViewerProps {
 }
 
 export function PropertyImageViewer({ images, title }: PropertyImageViewerProps) {
-  const safeImages = images.length > 0 ? images : ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200']
+  const safeImages = images.length > 0
+    ? images.map(resolveImageUrl)
+    : [resolveImageUrl('')]
   const [index, setIndex] = useState(0)
   const [touchStartX, setTouchStartX] = useState<number | null>(null)
   const [lightboxOpen, setLightboxOpen] = useState(false)
