@@ -13,7 +13,7 @@ export function HeroCarousel() {
         className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-stone-950/55 via-stone-950/35 to-stone-950/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-stone-950/42 via-stone-950/22 to-stone-950/48" />
     </div>
   )
 }

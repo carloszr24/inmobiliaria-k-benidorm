@@ -45,7 +45,7 @@ export default async function HomePage() {
         {/* Background */}
         <div className="absolute inset-0">
           <HeroCarousel />
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/70 via-stone-950/55 to-stone-950/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-950/50 via-stone-950/30 to-stone-950/55" />
         </div>
 
         {/* Content */}
@@ -54,7 +54,7 @@ export default async function HomePage() {
             Compra o vende tu vivienda en Benidorm
             <span className="hidden md:inline"> </span>
             <br className="md:hidden" aria-hidden="true" />
-            en <span className="text-blue-100 [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">menos de 60 días</span>
+            en <span className="text-blue-100 [text-shadow:0_2px_10px_rgba(0,0,0,0.5)]">menos de 40 días</span>
           </h1>
           <p className="text-stone-200 text-base sm:text-lg md:text-xl font-normal max-w-[min(100%,22rem)] sm:max-w-2xl mx-auto mb-6 md:mb-7 leading-relaxed text-pretty animate-fade-up" style={{ animationDelay: '0.1s', opacity: 0, animationFillMode: 'forwards' }}>
             Te acompañamos desde el inicio hasta el final de la operación con un servicio totalmente personalizado
