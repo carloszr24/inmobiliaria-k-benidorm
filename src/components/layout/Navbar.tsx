@@ -83,25 +83,23 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="relative flex items-center h-16">
-          {/* Logo */}
+        <div className="relative flex h-16 items-center">
           <Link href="/" className="flex shrink-0 items-center">
             <Image
               src={AGENT.logo}
               alt={`${AGENT.name} logo`}
-              width={240}
-              height={64}
+              width={220}
+              height={58}
               priority
               className={cn(
-                'h-[3.35rem] w-auto md:h-[4.35rem] translate-y-[3px] transition-opacity duration-200',
+                'h-10 w-auto md:h-11 transition-opacity duration-200',
                 transparent ? 'opacity-95' : 'opacity-100'
               )}
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-7 ml-auto">
-            {/* Desktop nav */}
-            <nav className="flex items-center gap-7">
+          <div className="ml-auto hidden h-10 items-center gap-7 md:flex">
+            <nav className="flex h-10 items-center gap-7">
               {links.map((link) => (
                 link.href === '/sobre-nosotros' ? (
                   <div
@@ -113,7 +111,7 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       className={cn(
-                        'inline-flex items-center gap-1 text-[11px] font-medium uppercase tracking-[0.13em] transition-colors duration-200',
+                        'inline-flex h-10 items-center gap-1 text-[11px] font-medium uppercase leading-none tracking-[0.13em] transition-colors duration-200',
                         pathname === link.href || servicesOpen
                           ? transparent
                             ? 'text-white'
@@ -171,7 +169,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      'text-[11px] font-medium uppercase tracking-[0.13em] transition-colors duration-200',
+                      'inline-flex h-10 items-center text-[11px] font-medium uppercase leading-none tracking-[0.13em] transition-colors duration-200',
                       pathname === link.href
                         ? transparent
                           ? 'text-white'
@@ -187,14 +185,13 @@ export function Navbar() {
               ))}
             </nav>
 
-            {/* CTA */}
             <ValoracionGratuitaModal
               triggerLabel="Valoración gratuita"
               triggerClassName={cn(
-                'rounded-md text-[11px] uppercase tracking-[0.13em] px-5 py-2.5',
+                'inline-flex h-10 shrink-0 items-center justify-center rounded-md px-5 text-[11px] font-medium uppercase leading-none tracking-[0.13em] transition-colors duration-200',
                 transparent
-                  ? 'inline-flex items-center justify-center border border-white/80 text-white hover:bg-white hover:text-stone-900 transition-colors duration-200'
-                  : 'btn-primary'
+                  ? 'border border-white/80 text-white hover:bg-white hover:text-stone-900'
+                  : 'bg-brand-blue text-white hover:bg-brand-blue-dark'
               )}
             />
           </div>
