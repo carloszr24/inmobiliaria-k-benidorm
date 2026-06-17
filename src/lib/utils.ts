@@ -28,11 +28,12 @@ export function parseImages(images: string): string[] {
 const PROPERTY_IMAGE_FALLBACK =
   'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80'
 
-/** Evita rutas locales inexistentes que rompen next/image en producción. */
+/** Devuelve la URL tal cual si es remota o un archivo en /public. */
 export function resolveImageUrl(url: string): string {
   const trimmed = url?.trim()
   if (!trimmed) return PROPERTY_IMAGE_FALLBACK
   if (/^https?:\/\//i.test(trimmed)) return trimmed
+  if (trimmed.startsWith('/')) return trimmed
   return PROPERTY_IMAGE_FALLBACK
 }
 
